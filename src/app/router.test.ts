@@ -13,6 +13,11 @@ describe("route mapping", () => {
     expect(parseRoute("/editor/")).toBe("editor");
   });
 
+  it("strips the deployment base path", () => {
+    expect(parseRoute("/grok-motion/editor", "/grok-motion/")).toBe("editor");
+    expect(parseRoute("/grok-motion/", "/grok-motion/")).toBe("gallery");
+  });
+
   it("falls back to the gallery for unknown paths", () => {
     expect(parseRoute("/missing")).toBe("gallery");
   });

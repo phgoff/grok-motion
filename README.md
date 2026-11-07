@@ -23,7 +23,9 @@ vp run build
 
 `vp check` checks formatting, lint rules, and TypeScript types. Use `vp check --fix` to apply supported fixes.
 
-The production build is in `dist`. Run `vp preview` to inspect it locally. Deploy `dist` on a static host at the origin root. The app uses clean paths, so the host must serve `index.html` for unknown paths, including `/editor`.
+The production build is in `dist`. Run `vp preview` to inspect it locally. Deploy `dist` on a static host at the origin root. The app uses clean paths, so the host must serve `index.html` for unknown paths, including `/editor`. The GitHub Pages workflow copies `dist/index.html` to `dist/404.html` for that fallback.
+
+Run the **Deploy to GitHub Pages** workflow manually to publish. It builds with the `/grok-motion/` base path. Enable Pages with **GitHub Actions** as the source in the repository settings. Private repositories need a plan that supports Pages.
 
 ## Pages
 

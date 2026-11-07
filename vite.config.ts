@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import { configDefaults, defineConfig, transformWithOxc } from "vite-plus";
 
 export default defineConfig({
+  base: process.env.VITE_BASE || "/",
   plugins: [
     {
       name: "motion-source",

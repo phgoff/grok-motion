@@ -3,17 +3,20 @@ import { flushSync } from "react-dom";
 
 export type Route = "gallery" | "editor";
 
-export function parseRoute(pathname: string): Route {
-  const path = pathname.replace(/\/+$/, "") || "/";
+export function parseRoute(pathname: string, base = "/"): Route {
+  const relative =
+    base !== "/" && pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
+  const path = relative.replace(/\/+$/, "") || "/";
   return path === "/editor" ? "editor" : "gallery";
 }
 
 export function hrefFor(route: Route): string {
-  return route === "editor" ? "/editor" : "/";
+  const base = import.meta.env.BASE_URL;
+  return route === "editor" ? `${base}editor` : base;
 }
 
 function readRoute(): Route {
-  return parseRoute(window.location.pathname);
+  return parseRoute(window.location.pathname, import.meta.env.BASE_URL);
 }
 
 /**
