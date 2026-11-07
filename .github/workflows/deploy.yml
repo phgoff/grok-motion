@@ -28,7 +28,10 @@ jobs:
       - run: vp run build
         env:
           VITE_BASE: /grok-motion/
-      - run: cp dist/index.html dist/404.html
+      - run: |
+          cp dist/index.html dist/404.html
+          mkdir -p dist/editor
+          cp dist/index.html dist/editor/index.html
       - uses: actions/configure-pages@v5
         with:
           enablement: true
