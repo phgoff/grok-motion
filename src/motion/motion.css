@@ -1,0 +1,204 @@
+.motion-runtime {
+  /* Not positioned: .motion-debug anchors to the outer stage, not the bot's box. */
+  width: 100%;
+  min-width: 0;
+}
+
+.motion-runtime.h-full {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.motion-runtime-svg,
+.motion-runtime-host svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: visible !important;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  contain: paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.motion-debug {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+  display: grid;
+  gap: 3px;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel) 84%, transparent);
+  backdrop-filter: blur(10px);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.motion-debug span {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.motion-debug b {
+  color: var(--foreground);
+  font-weight: 500;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-runtime-svg,
+  .bot-mark-canvas > svg,
+  .motion-runtime-host svg {
+    transition: none;
+  }
+}
+
+/* 3D bot-engine host (stock silhouettes): square box centered in the stage host. */
+.bot-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.bot-mark-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bot-mark-canvas > svg {
+  display: block;
+  overflow: visible !important;
+  max-width: none;
+}
+
+/* CapCut-style persistent low-attention horizontal timeline scrollbar */
+.timeline-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+}
+
+.timeline-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  background: transparent;
+}
+
+.timeline-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 9999px;
+}
+
+.timeline-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  transition: background-color 150ms ease;
+}
+
+.timeline-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.timeline-scrollbar::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+/* Flat stage surfaces, one background, no nested cards.
+   Light paper matches our warm theme against the #1d1d1d dark stage; dark is the companion room. */
+.motion-stage-paper {
+  background: #f2f1ec;
+}
+
+.motion-stage-dark {
+  background: #1d1d1d;
+}
+
+.motion-runtime-host {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  /* No paint containment: the 3D canvas over-draws the host box on purpose
+     (overflow: visible alone doesn't help under contain: paint). */
+  contain: layout;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.motion-runtime.h-full > .motion-runtime-host {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+}
+
+/* Gallery cards: base first, then the light-stage overrides LAST so they win
+   the cascade (same specificity, later declaration). */
+.motion-state-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--panel) 50%, transparent);
+  padding: 12px;
+  text-align: left;
+  transition:
+    border-color 150ms,
+    background-color 150ms;
+}
+
+.motion-state-card:hover {
+  border-color: var(--line-2);
+  background: color-mix(in srgb, var(--panel-raised) 65%, transparent);
+}
+
+/** All mascots (2D and 3D): keep the card's mascot comfortably inside the cell. */
+.motion-state-card .motion-runtime {
+  max-width: 132px;
+  margin: 0 auto;
+}
+
+.motion-state-card-light {
+  background: #f2f1ec;
+  border-color: rgb(0 0 0 / 0.08);
+}
+
+.motion-state-card-light:hover {
+  background: #e8e7e2;
+  border-color: rgb(0 0 0 / 0.12);
+}
+
+.motion-state-card-light .state-name {
+  color: #0a0a0c;
+}
+
+.motion-state-card-light .state-meta {
+  color: #57534e;
+}

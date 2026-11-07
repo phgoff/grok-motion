@@ -1,0 +1,63 @@
+/*
+ * Theme bridge for the Fluid Functionalism components.
+ *
+ * Tailwind only registers `@theme` tokens from the stylesheet that imports
+ * `tailwindcss` (`styles.css`). This file is imported there so utilities like
+ * `text-background` and `border-border` exist at all; the token values
+ * themselves live in `styles.css`.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted);
+  --color-border: var(--line-2);
+  --color-accent: var(--accent);
+  --color-card: var(--panel);
+  --color-ring: var(--accent);
+  --color-hover: var(--hover);
+  --color-active: var(--active);
+  --color-selected: var(--selected);
+  --color-destructive-light: var(--destructive-light);
+  --color-tint: var(--tint);
+  --color-tint-hover: var(--tint-hover);
+  --color-focus-ring: var(--focus-ring);
+
+  /* Sidebar Theme */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Bot Engine Theme */
+  --color-bot-surface: var(--bot-surface);
+  --color-bot-heading: var(--bot-heading);
+  --color-bot-panel-line: var(--bot-panel-line);
+  --color-bot-ring: var(--bot-ring);
+  --color-bot-ring-active: var(--bot-ring-active);
+
+  /* Global Neutral Palette */
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  /* Global Accent Palette */
+  --color-amber-200: var(--accent-amber-200);
+  --color-amber-300: var(--accent-amber-300);
+  --color-emerald-300: var(--accent-emerald-300);
+  --color-sky-300: var(--accent-sky-300);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
